@@ -50,4 +50,43 @@ next_book_number = 1
 next_member_number = 1
 
 while True:
-    ...
+    print("\n LIBRARY MANAGEMENT SYSTEM ")
+    
+    print("1. Add a book")
+    print("2. Register a member")
+    print("3. Borrow a book")
+    print("4. Return a book")
+    print("5. Search the catalogue")
+    print("6. Member summary")
+    print("7. Library report")
+    print("8. Exit")
+
+    choice = input("Choose an option (1-8): ").strip()
+
+    if choice == "1":
+        print("Coming soon")
+
+    elif choice == "2":
+        print("Coming soon")
+
+    elif choice == "3":
+        print("Coming soon")
+
+    elif choice == "4":
+        print("Coming soon")
+
+    elif choice == "5":
+        print("Coming soon")
+
+    elif choice == "6":
+        print("Coming soon")
+
+    elif choice == "7":
+        print("Coming soon")
+
+    elif choice == "8":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice, please enter 1-8.")
