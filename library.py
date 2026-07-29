@@ -6,48 +6,7 @@ def library_totals(books):
     ...
 
 # Returns the book ID of the most-borrowed book, or None if no books
-def borrow_book(books, members):
 
-    member_id = input("Member ID: ").strip()
-
-    if member_id not in members:
-        print("No such member.")
-        return
-
-    book_id = input("Book ID: ").strip()
-
-    if book_id not in books:
-        print("No such book.")
-        return
-
-    if len(members[member_id]["borrowed"]) >= 3:
-        print("A member may borrow at most 3 books.")
-        return
-
-    if book_id in members[member_id]["borrowed"]:
-        print("That member already has this book.")
-        return
-
-    if books[book_id]["available"] == 0:
-        print("No copies available.")
-        return
-
-    books[book_id]["available"] -= 1
-    books[book_id]["times_borrowed"] += 1
-    members[member_id]["borrowed"].append(book_id)
-
-    print(
-        member_id
-        + " borrowed "
-        + book_id
-        + ": "
-        + books[book_id]["title"]
-        + " ("
-        + str(books[book_id]["available"])
-        + " of "
-        + str(books[book_id]["total"])
-        + " copies now available)"
-    )
 
 # Asks for a number of copies, validates with try-except, returns int or None
 def read_valid_copies():
@@ -154,8 +113,47 @@ def register_member(members, next_member_number):
 
 # One member borrows one book - enforces ALL the rules, updates BOTH dicts
 def borrow_book(books, members):
-    ...
 
+    member_id = input("Member ID: ").strip()
+
+    if member_id not in members:
+        print("No such member.")
+        return
+
+    book_id = input("Book ID: ").strip()
+
+    if book_id not in books:
+        print("No such book.")
+        return
+
+    if len(members[member_id]["borrowed"]) >= 3:
+        print("A member may borrow at most 3 books.")
+        return
+
+    if book_id in members[member_id]["borrowed"]:
+        print("That member already has this book.")
+        return
+
+    if books[book_id]["available"] == 0:
+        print("No copies available.")
+        return
+
+    books[book_id]["available"] -= 1
+    books[book_id]["times_borrowed"] += 1
+    members[member_id]["borrowed"].append(book_id)
+
+    print(
+        member_id
+        + " borrowed "
+        + book_id
+        + ": "
+        + books[book_id]["title"]
+        + " ("
+        + str(books[book_id]["available"])
+        + " of "
+        + str(books[book_id]["total"])
+        + " copies now available)"
+    )
 # One member returns one book - updates BOTH dicts
 def return_book(books, members):
     ...
@@ -201,7 +199,7 @@ while True:
         next_member_number = register_member(members, next_member_number)
 
     elif choice == "3":
-        print("Coming soon")
+        borrow_book(books, members)
 
     elif choice == "4":
         print("Coming soon")
