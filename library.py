@@ -154,6 +154,7 @@ def borrow_book(books, members):
         + str(books[book_id]["total"])
         + " copies now available)"
     )
+    
 # One member returns one book - updates BOTH dicts
 def return_book(books, members):
 
@@ -191,7 +192,38 @@ def return_book(books, members):
 
 # Case-insensitive keyword search over titles
 def search_catalogue(books):
-    ...
+
+    if len(books) == 0:
+        print("The catalogue is empty.")
+        return
+
+    keyword = input("Search for: ").strip().lower()
+
+    found = False
+
+    for book_id in books:
+
+        info = books[book_id]
+
+        if keyword in info["title"].lower():
+
+            print(
+                book_id
+                + ": "
+                + info["title"]
+                + " by "
+                + info["author"]
+                + " - "
+                + str(info["available"])
+                + " of "
+                + str(info["total"])
+                + " available"
+            )
+
+            found = True
+
+    if found == False:
+        print("No books match that search.")
 
 # Prints one member with the TITLES of their borrowed books
 def member_summary(books, members):
@@ -269,7 +301,7 @@ while True:
         return_book(books, members)
 
     elif choice == "5":
-        print("Coming soon")
+        search_catalogue(books)
 
     elif choice == "6":
         member_summary(books, members)
