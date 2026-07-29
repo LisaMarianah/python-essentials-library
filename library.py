@@ -156,7 +156,38 @@ def borrow_book(books, members):
     )
 # One member returns one book - updates BOTH dicts
 def return_book(books, members):
-    ...
+
+    member_id = input("Member ID: ").strip()
+
+    if member_id not in members:
+        print("No such member.")
+        return
+
+    book_id = input("Book ID: ").strip()
+
+    if book_id not in books:
+        print("No such book.")
+        return
+
+    if book_id not in members[member_id]["borrowed"]:
+        print("That member does not have this book.")
+        return
+
+    members[member_id]["borrowed"].remove(book_id)
+    books[book_id]["available"] += 1
+
+    print(
+        member_id
+        + " returned "
+        + book_id
+        + ": "
+        + books[book_id]["title"]
+        + " ("
+        + str(books[book_id]["available"])
+        + " of "
+        + str(books[book_id]["total"])
+        + " copies now available)"
+    )
 
 # Case-insensitive keyword search over titles
 def search_catalogue(books):
