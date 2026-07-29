@@ -25,8 +25,38 @@ def read_valid_copies():
         return None
 
 # Adds a new book OR adds copies to an existing title by the same author
-def add_book(books):
-    ...
+def add_book(books, next_book_number):
+
+    title = input("Title: ").strip()
+
+    if title == "":
+        print("Title cannot be blank.")
+        return next_book_number
+
+    author = input("Author: ").strip()
+
+    if author == "":
+        print("Author cannot be blank.")
+        return next_book_number
+
+    copies = read_valid_copies()
+
+    if copies is None:
+        return next_book_number
+
+    book_id = "B" + str(next_book_number)
+
+    books[book_id] = {
+        "title": title,
+        "author": author,
+        "total": copies,
+        "available": copies,
+        "times_borrowed": 0
+    }
+
+    print("Added " + book_id + ": " + title + " by " + author + " (" + str(copies) + " copies)")
+
+    return next_book_number + 1
 
 # Registers a new member with an empty borrowed list
 def register_member(members):
@@ -75,7 +105,7 @@ while True:
     choice = input("Choose an option (1-8): ").strip()
 
     if choice == "1":
-        print("Coming soon")
+        next_book_number = add_book(books, next_book_number)
 
     elif choice == "2":
         print("Coming soon")
