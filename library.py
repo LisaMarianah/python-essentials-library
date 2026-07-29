@@ -284,7 +284,47 @@ def member_summary(books, members):
 
 # Prints the whole-library report
 def library_report(books, members):
-    ...
+
+    if len(books) == 0:
+        print("The catalogue is empty.")
+        return
+
+    total_copies, copies_available = library_totals(books)
+
+    print("Library Report")
+    print("----------------------------")
+    print("Titles: " + str(len(books)))
+    print("Total copies: " + str(total_copies))
+    print("Copies available: " + str(copies_available))
+    print("Copies on loan: " + str(total_copies - copies_available))
+
+    best_book = most_borrowed(books)
+
+    if best_book is not None:
+        print(
+            "Most borrowed: "
+            + best_book
+            + " - "
+            + books[best_book]["title"]
+            + " ("
+            + str(books[best_book]["times_borrowed"])
+            + " borrows)"
+        )
+
+    print("Registered members: " + str(len(members)))
+
+    print("Members at 3-book limit:")
+
+    found = False
+
+    for member_id in members:
+
+        if len(members[member_id]["borrowed"]) == 3:
+            print(member_id + " - " + members[member_id]["name"])
+            found = True
+
+    if found == False:
+        print("None")
 
 # ---- main program ----
 
