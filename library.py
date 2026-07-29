@@ -3,9 +3,29 @@
 
 # Returns (total_copies, copies_available) across the whole library as a tuple
 def library_totals(books):
-    ...
+
+    total_copies = 0
+    copies_available = 0
+
+    for book_id in books:
+        total_copies += books[book_id]["total"]
+        copies_available += books[book_id]["available"]
+
+    return total_copies, copies_available
 
 # Returns the book ID of the most-borrowed book, or None if no books
+def most_borrowed(books):
+
+    best_book = None
+    highest = None
+
+    for book_id in books:
+
+        if highest is None or books[book_id]["times_borrowed"] > highest:
+            highest = books[book_id]["times_borrowed"]
+            best_book = book_id
+
+    return best_book
 
 
 # Asks for a number of copies, validates with try-except, returns int or None
@@ -307,7 +327,7 @@ while True:
         member_summary(books, members)
 
     elif choice == "7":
-        print("Coming soon")
+        library_report(books, members)
 
     elif choice == "8":
         print("Goodbye!")
