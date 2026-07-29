@@ -11,7 +11,18 @@ def most_borrowed(books):
 
 # Asks for a number of copies, validates with try-except, returns int or None
 def read_valid_copies():
-    ...
+    try:
+        copies = int(input("Number of copies: "))
+
+        if copies < 1:
+            print("That is not a valid number of copies.")
+            return None
+
+        return copies
+
+    except ValueError:
+        print("That is not a valid number of copies.")
+        return None
 
 # Adds a new book OR adds copies to an existing title by the same author
 def add_book(books):
