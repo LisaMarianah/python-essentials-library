@@ -44,6 +44,30 @@ def add_book(books, next_book_number):
     if copies is None:
         return next_book_number
 
+    # Check if the book already exists
+    for book_id in books:
+
+        if (books[book_id]["title"].lower() == title.lower() and
+                books[book_id]["author"].lower() == author.lower()):
+
+            books[book_id]["total"] += copies
+            books[book_id]["available"] += copies
+
+            print(
+                "Added "
+                + str(copies)
+                + " more copies of "
+                + book_id
+                + ": "
+                + title
+                + " (now "
+                + str(books[book_id]["total"])
+                + " total)"
+            )
+
+            return next_book_number
+
+    # Create a new book
     book_id = "B" + str(next_book_number)
 
     books[book_id] = {
@@ -54,7 +78,17 @@ def add_book(books, next_book_number):
         "times_borrowed": 0
     }
 
-    print("Added " + book_id + ": " + title + " by " + author + " (" + str(copies) + " copies)")
+    print(
+        "Added "
+        + book_id
+        + ": "
+        + title
+        + " by "
+        + author
+        + " ("
+        + str(copies)
+        + " copies)"
+    )
 
     return next_book_number + 1
 
