@@ -195,7 +195,40 @@ def search_catalogue(books):
 
 # Prints one member with the TITLES of their borrowed books
 def member_summary(books, members):
-    ...
+
+    member_id = input("Member ID: ").strip()
+
+    if member_id not in members:
+        print("No such member.")
+        return
+
+    member = members[member_id]
+
+    print(
+        member_id
+        + " - "
+        + member["name"]
+        + " | books out: "
+        + str(len(member["borrowed"]))
+        + " of 3 allowed"
+    )
+
+    if len(member["borrowed"]) == 0:
+        print(" (no books out)")
+        return
+
+    for book_id in member["borrowed"]:
+
+        book = books[book_id]
+
+        print(
+            " "
+            + book_id
+            + ": "
+            + book["title"]
+            + " by "
+            + book["author"]
+        )
 
 # Prints the whole-library report
 def library_report(books, members):
@@ -239,7 +272,7 @@ while True:
         print("Coming soon")
 
     elif choice == "6":
-        print("Coming soon")
+        member_summary(books, members)
 
     elif choice == "7":
         print("Coming soon")
