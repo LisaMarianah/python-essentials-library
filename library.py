@@ -233,7 +233,7 @@ while True:
         borrow_book(books, members)
 
     elif choice == "4":
-        print("Coming soon")
+        return_book(books, members)
 
     elif choice == "5":
         print("Coming soon")
