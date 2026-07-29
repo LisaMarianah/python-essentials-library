@@ -2,7 +2,7 @@
 
 # Student Information
 **Name:** Lisa Hlongwane
-**Cohort:** 2026 DS Jan Cohort
+**Cohort:** 2026 DS Feb Cohort
 
 # Project Description
 
