@@ -324,7 +324,7 @@ def library_report(books, members):
             found = True
 
     if found == False:
-        print("None")
+        print("none")
 
 # ---- main program ----
 
@@ -336,7 +336,7 @@ next_member_number = 1
 
 while True:
     print("\n LIBRARY MANAGEMENT SYSTEM ")
-    
+    print("----------------------------")
     print("1. Add a book")
     print("2. Register a member")
     print("3. Borrow a book")
