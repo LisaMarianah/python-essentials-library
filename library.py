@@ -93,8 +93,24 @@ def add_book(books, next_book_number):
     return next_book_number + 1
 
 # Registers a new member with an empty borrowed list
-def register_member(members):
-    ...
+def register_member(members, next_member_number):
+
+    name = input("Name: ").strip()
+
+    if name == "":
+        print("Name cannot be blank.")
+        return next_member_number
+
+    member_id = "M" + str(next_member_number)
+
+    members[member_id] = {
+        "name": name,
+        "borrowed": []
+    }
+
+    print("Registered " + member_id + ": " + name)
+
+    return next_member_number + 1
 
 # One member borrows one book - enforces ALL the rules, updates BOTH dicts
 def borrow_book(books, members):
@@ -142,7 +158,7 @@ while True:
         next_book_number = add_book(books, next_book_number)
 
     elif choice == "2":
-        print("Coming soon")
+        next_member_number = register_member(members, next_member_number)
 
     elif choice == "3":
         print("Coming soon")
